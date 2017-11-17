@@ -1,0 +1,4 @@
+FROM scratch
+COPY ./LICENSE.md /LICENSE
+COPY ./bin/sleep-linux64 /sleep
+ENTRYPOINT ["/sleep"]

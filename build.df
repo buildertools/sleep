@@ -1,0 +1,10 @@
+FROM golang:alpine
+RUN apk --update add git
+
+COPY *.go /go/src/github.com/buildertools/sleep/
+
+WORKDIR /go/
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/sleep-linux64 -v github.com/buildertools/sleep
+RUN CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/sleep-darwin64 -v github.com/buildertools/sleep
+
+CMD echo Sleep build container
